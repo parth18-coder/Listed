@@ -24,6 +24,14 @@ fun ListOfLinks(dataState: ListedDto?) {
 
     var linkState by remember{ mutableStateOf("top links")}
 
+    var colorTopLinksButton by remember{ mutableStateOf(Color(0xFF0E6FFF))}
+
+    var colorRecentLinksButton by remember{ mutableStateOf(Color(0xFFEBEBEB))}
+
+    var textColorTopLinks by remember{ mutableStateOf(Color(0xFFFFFFFF))}
+
+    var textColorRecentLinks by remember{ mutableStateOf(Color(0xFF999CA0))}
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -32,20 +40,36 @@ fun ListOfLinks(dataState: ListedDto?) {
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Box(
                 modifier = Modifier
-                    .background(Color(0xFF0E6FFF), ovalShape)
+                    .background(colorTopLinksButton, ovalShape)
                     .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
-                    .clickable { linkState="top links"}, contentAlignment = Alignment.Center
+                    .clickable {
+                        linkState = "top links"
+                        colorRecentLinksButton = Color(0xFFEBEBEB)
+                        colorTopLinksButton = Color(0xFF0E6FFF)
+                        textColorTopLinks= Color(0xFFFFFFFF)
+                        textColorRecentLinks= Color(0xFF999CA0)
+                    },
+                contentAlignment = Alignment.Center
             ) {
-                Text(text = "Top Links", fontSize = 16.sp,color= Color(0xFFFFFFFF))
+                Text(text = "Top Links", fontSize = 16.sp,color= textColorTopLinks)
             }
+
             Spacer(modifier = Modifier.width(6.dp))
+
             Box(
                 modifier = Modifier
-                    .background(Color(0xFF0E6FFF), ovalShape)
+                    .background(colorRecentLinksButton, ovalShape)
                     .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
-                    .clickable {linkState="recent links" }, contentAlignment = Alignment.Center
+                    .clickable {
+                        linkState = "recent links"
+                        colorRecentLinksButton = Color(0xFF0E6FFF)
+                        colorTopLinksButton = Color(0xFFEBEBEB)
+                        textColorTopLinks= Color(0xFF999CA0)
+                        textColorRecentLinks= Color(0xFFFFFFFF)
+                    },
+                contentAlignment = Alignment.Center
             ) {
-                Text(text = "Recent Links", fontSize = 16.sp,color= Color(0xFFFFFFFF))
+                Text(text = "Recent Links", fontSize = 16.sp,color= textColorRecentLinks)
             }
         }
 
